@@ -15,7 +15,7 @@ namespace Code1
                 temp = temp + acgt[i];
             int length = 1;
             int minimunValue = int.MaxValue;
-            while (length < maxPeriod)
+            while (length <= maxPeriod)
             {
                 int sub = 0;
                 for (int i = 0; i < length; i++)
@@ -23,11 +23,11 @@ namespace Code1
                     int[] arrayCount = new int[4] { 0, 0, 0, 0 };
                     for (int j = i; j < temp.Length; j += length)
                     {
-                        if (temp[i] == 'A')
+                        if (temp[j] == 'A')
                             arrayCount[0]++;
-                        else if (temp[i] == 'C')
+                        else if (temp[j] == 'C')
                             arrayCount[1]++;
-                        else if (temp[i] == 'G')
+                        else if (temp[j] == 'G')
                             arrayCount[2]++;
                         else
                             arrayCount[3]++;
@@ -35,17 +35,17 @@ namespace Code1
                     int max = arrayCount[0];
                     for (int k = 0; k < arrayCount.Length; k++)
                         if (max < arrayCount[k])
-                            max = arrayCount[i];
+                            max = arrayCount[k];
                     sub += (temp.Length - i) / length - max;
                     if ((temp.Length - i) % length != 0)
                         sub++;
 
                 }
-                if (sub < min)
-                    min = sub;
+                if (sub < minimunValue)
+                    minimunValue = sub;
                 length++;
             }
-            return min;
+            return minimunValue;
         }
         static void Main(string[] args)
         {
